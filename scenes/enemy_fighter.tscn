@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfyk857ivqnu7"]
+
+[ext_resource type="Script" path="res://scripts/enemy_fighter.gd" id="1_7na6k"]
+[ext_resource type="Texture2D" uid="uid://bbfcr0y4j0ldo" path="res://sheets/Enemy/enemy_shooter.png" id="2_kf7sc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngrld"]
+size = Vector2(16, 16)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+modulate = Color(0.5822, 0.071, 0.71, 1)
+scale = Vector2(0.5, 0.5)
+collision_mask = 6
+script = ExtResource("1_7na6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ngrld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_kf7sc")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

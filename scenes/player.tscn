@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://clvt7my7qt3a5"]
+
+[ext_resource type="Script" path="res://scripts/movement.gd" id="1_fapkl"]
+[ext_resource type="Texture2D" uid="uid://kda2bx7unbj0" path="res://sheets/Player/player.png" id="2_ix8f0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5g1u"]
+atlas = ExtResource("2_ix8f0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqgpx"]
+atlas = ExtResource("2_ix8f0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ejk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5g1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqgpx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owsd5"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwiwr"]
+bg_color = Color(1, 0.92549, 0.45098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a1pe"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_fapkl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, 0)
+sprite_frames = SubResource("SpriteFrames_2ejk0")
+autoplay = "default"
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_owsd5")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(10, 2)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 95.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+modulate = Color(1, 0.92549, 0.45098, 1)
+z_index = 5
+custom_minimum_size = Vector2(10, 2)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_fwiwr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5a1pe")
+max_value = 50.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

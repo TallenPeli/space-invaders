@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://c70jeeigjd20a"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_6s0mp"]
+[ext_resource type="PackedScene" uid="uid://c5esorudif3ub" path="res://scenes/barrier.tscn" id="2_61h1c"]
+[ext_resource type="PackedScene" uid="uid://cj2bxug0ixkxv" path="res://scenes/ammo.tscn" id="3_kbyd7"]
+[ext_resource type="PackedScene" uid="uid://dfyk857ivqnu7" path="res://scenes/enemy_fighter.tscn" id="4_dfmnr"]
+
+[sub_resource type="Environment" id="Environment_qn0er"]
+background_mode = 3
+background_color = Color(1, 1, 1, 1)
+background_canvas_max_layer = 4
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.06
+glow_strength = 1.05
+glow_bloom = 1.0
+glow_blend_mode = 0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ydjv8"]
+resource_local_to_scene = true
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6s0mp")
+
+[node name="Barrier" parent="." instance=ExtResource("2_61h1c")]
+position = Vector2(-9, -45)
+scale = Vector2(0.2, 0.2)
+
+[node name="Ammo" type="Node" parent="."]
+
+[node name="Area2D" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(-36, 47)
+
+[node name="Area2D2" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(25, 47)
+scale = Vector2(0.04, 0.04)
+
+[node name="Area2D3" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(200, 48.88)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="Area2D4" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(82, 48.88)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="Area2D5" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(141, 48.88)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="Area2D6" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(-97, 48.88)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="Area2D7" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(-155, 48.88)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="Area2D8" parent="Ammo" instance=ExtResource("3_kbyd7")]
+position = Vector2(-215, 49)
+scale = Vector2(0.0016, 0.0016)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_dfmnr")]
+position = Vector2(-253, -87)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qn0er")
+camera_attributes = SubResource("CameraAttributesPractical_ydjv8")

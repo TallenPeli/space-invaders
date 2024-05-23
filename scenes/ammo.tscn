@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj2bxug0ixkxv"]
+
+[ext_resource type="Texture2D" uid="uid://dm3oveecimpxo" path="res://sheets/collectables/ammo.png" id="1_rc5ix"]
+[ext_resource type="Script" path="res://scripts/ammo.gd" id="1_tv3vm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8btl7"]
+
+[node name="Area2D" type="Area2D"]
+modulate = Color(1, 0.926667, 0.45, 1)
+scale = Vector2(0.2, 0.2)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_tv3vm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8btl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rc5ix")
+
+[node name="respawn_cooldown" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="respawn_cooldown" to="." method="_on_respawn_cooldown_timeout"]

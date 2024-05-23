@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfmsuythrstt6"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_hiu0x"]
+[ext_resource type="AudioStream" uid="uid://clpkw2j55engc" path="res://sounds/20190601_space_warning_gun_ambience-28929.mp3" id="2_2lhbc"]
+[ext_resource type="AudioStream" uid="uid://cq8otnuwr0yeb" path="res://sounds/laserShoot.wav" id="2_u6u66"]
+[ext_resource type="AudioStream" uid="uid://qy3pccgwddfj" path="res://sounds/enemy_shoot.wav" id="3_yrwyo"]
+[ext_resource type="AudioStream" uid="uid://cs8jw0trwepln" path="res://sounds/hitHurt.wav" id="5_3qg2v"]
+[ext_resource type="AudioStream" uid="uid://cav6waleunx2o" path="res://sounds/player_explosion.wav" id="6_4y6kc"]
+[ext_resource type="AudioStream" uid="uid://db0oygnfguelg" path="res://sounds/destroy.wav" id="7_nlky3"]
+[ext_resource type="AudioStream" uid="uid://bx5aup8tlm4n8" path="res://sounds/powerUp.wav" id="8_j2tyi"]
+
+[node name="Audio Manager" type="Node"]
+script = ExtResource("1_hiu0x")
+
+[node name="Player Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_u6u66")
+
+[node name="Enemy Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yrwyo")
+volume_db = -26.707
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2lhbc")
+volume_db = -2.453
+autoplay = true
+parameters/looping = false
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3qg2v")
+volume_db = -2.453
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4y6kc")
+
+[node name="Destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_nlky3")
+
+[node name="Collect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_j2tyi")

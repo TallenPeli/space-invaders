@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b74dj1v7dtqm2"]
+
+[ext_resource type="Texture2D" uid="uid://0pdt6as5ttax" path="res://sheets/New Piskel.png" id="2_4wc4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj221"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yltq4"]
+atlas = ExtResource("2_4wc4x")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j2sv"]
+atlas = ExtResource("2_4wc4x")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtwbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yltq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j2sv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dj221")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gtwbx")

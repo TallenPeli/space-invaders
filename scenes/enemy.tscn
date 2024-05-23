@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bciuyyn7h3480"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mfarv"]
+[ext_resource type="Texture2D" uid="uid://cweqm3omc1q8d" path="res://sheets/Enemy/enemy.png" id="2_cyq15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh5vn"]
+size = Vector2(16, 6)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_mfarv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cyq15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_hh5vn")
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]

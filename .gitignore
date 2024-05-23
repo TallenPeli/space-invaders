@@ -1,0 +1,21 @@
+# Godot 4+ specific ignores
+android/
+debug.keystore
+
+# Godot-specific directories and files
+export_presets.cfg
+*.import/
+.import/
+
+# Godot cache files
+*.godot_imported
+*.converted
+
+# Godot project-specific directories and files
+data_*/       # Ignore data directories (e.g., data_linux/)
+mono/
+.godot/
+*.tres
+*.res
+*.godot
+*.cfg

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://lu6fdpps81a0"]
+
+[ext_resource type="Script" path="res://scripts/camera_shake.gd" id="1_s88mm"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(10, 10)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("1_s88mm")
